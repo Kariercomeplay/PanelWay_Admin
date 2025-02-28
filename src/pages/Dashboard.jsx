@@ -1,9 +1,10 @@
-import React from 'react';
-import { RiFileTextLine, RiUserLine, RiLineChartLine,RiAdvertisementLine,RiArticleLine   } from 'react-icons/ri';
+import React, { use, useEffect, useState } from 'react';
+import { RiFileTextLine, RiUserLine, RiLineChartLine, RiAdvertisementLine, RiArticleLine } from 'react-icons/ri';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { TbCircleDashedPlus } from "react-icons/tb";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { IoReload } from "react-icons/io5";
+import { countRentalLocationAPI, countUsersAPI } from '../apis/dashBoardAPI';
 const data = [
   { name: '25k', value: 40 },
   { name: '199k', value: 84 },
@@ -13,6 +14,9 @@ const data = [
   { name: '1499k', value: 25 },
   { name: '1999k', value: 12 },
 ];
+
+
+
 
 const StatCard = ({ title, value, change, icon: Icon, changeType = 'up' }) => (
   <div className="bg-white p-6 rounded-lg shadow-sm">
@@ -34,16 +38,33 @@ const StatCard = ({ title, value, change, icon: Icon, changeType = 'up' }) => (
 );
 
 function Dashboard() {
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [totalRentalLocations, setTotalRentalLocations] = useState(0);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await countUsersAPI();
+      
+
+        setTotalUsers(response.data);
+        const response2 = await countRentalLocationAPI();
+        setTotalRentalLocations(response2.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div className="flex-1 bg-gray-50 p-8">
       <div className="mb-8">
-      <div className="grid grid-cols-4 gap-6 mb-6">
+        <div className="grid grid-cols-4 gap-6 mb-6">
           <button className="flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-lg col-span-2">
-            <RiArticleLine  className="mr-2" />
+            <RiArticleLine className="mr-2" />
             Tạo Bài viết
           </button>
           <button className="flex items-center justify-center px-4 py-2 border border-blue-500 text-blue-500 rounded-lg">
-            <RiAdvertisementLine  className="mr-2" />
+            <RiAdvertisementLine className="mr-2" />
             Tạo Quảng cáo
           </button>
           <button className="flex items-center justify-center px-4 py-2 border border-blue-500 text-blue-500 rounded-lg">
@@ -62,7 +83,7 @@ function Dashboard() {
         <div className="grid grid-cols-4 gap-6">
           <StatCard
             title="Tổng số Người dùng"
-            value="1000"
+            value={totalUsers}
             change="1.8%"
             icon={RiUserLine}
           />
@@ -74,7 +95,7 @@ function Dashboard() {
           />
           <StatCard
             title="Tổng số Bài viết"
-            value="1000"
+            value={totalRentalLocations}
             change="1.8%"
             icon={RiFileTextLine}
           />

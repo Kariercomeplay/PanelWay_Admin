@@ -1,25 +1,33 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Dashboard from './pages/Dashboard'
-import About from './pages/About'
-import Login from './pages/Login'
-import Settings from './pages/Settings'
-import AdvertisingCenter from './pages/AdvertisingCenter'
-import Content from './pages/Content'
-import Users from './pages/Users'
-import GoldUsers from './pages/GoldUsers'
-import { AuthProvider } from './contexts/AuthContext'
-import { ProtectedRoute } from './components/ProtectedRoute'
-import { Layout } from './components/Layout'
-import './App.css'
-import HelpCenter from './pages/HelpCenter'
-import HelpCenterStart from './pages/HelpCenterStart'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import About from "./pages/About";
+import Login from "./pages/Login";
+import Settings from "./pages/Settings";
+import AdvertisingCenter from "./pages/AdvertisingCenter";
+import Content from "./pages/Content";
+import Users from "./pages/Users";
+import GoldUsers from "./pages/GoldUsers";
+import { AuthProvider } from "./contexts/AuthContext";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Layout } from "./components/Layout";
+import "./App.css";
+import HelpCenter from "./pages/HelpCenter";
+import HelpCenterStart from "./pages/HelpCenterStart";
+import GuestRoute from "./components/GuestRoute";
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={
+              <GuestRoute>
+                <Login />
+              </GuestRoute>
+            }
+          />
           <Route
             path="/"
             element={
@@ -50,7 +58,7 @@ function App() {
               </Layout>
             }
           />
-          <Route 
+          <Route
             path="/help"
             element={
               <Layout>
@@ -61,7 +69,7 @@ function App() {
             }
           />
           <Route
-            path='/starthelp'
+            path="/starthelp"
             element={
               <Layout>
                 <ProtectedRoute>
@@ -113,7 +121,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
-  )
+  );
 }
 
-export default App
+export default App;

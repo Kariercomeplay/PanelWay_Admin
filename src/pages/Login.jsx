@@ -5,28 +5,23 @@ import { useState } from 'react'
 function Login() {
     const { login } = useAuth()
     const navigate = useNavigate()
-    const [formData, setFormData] = useState({
-        phone: '',
-        password: ''
-    })
 
-    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         // Simulate login
-        login({ id: 1, name: 'User', phone: formData.phone })
+        const body = {
+            email: email,
+            password: password,
+            role: 'Manager'
+        }
+        await login(body)
         navigate('/')
     }
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        })
-    }
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-[#74ACFF]">
@@ -38,15 +33,15 @@ function Login() {
                 <form onSubmit={handleSubmit}>
                     <div className="space-y-4">
                         <div>
-                            <label htmlFor="phone" className="block text-sm font-bold text-gray-700 text-left">
-                                Số điện thoại
+                            <label htmlFor="email" className="block text-sm font-bold text-gray-700 text-left">
+                                Email
                             </label>
                             <input
-                                type="tel"
-                                id="phone"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                placeholder="0942345125"
+                                type="email"
+                                id="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="abc@gmail.com"
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
