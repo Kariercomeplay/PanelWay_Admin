@@ -32,9 +32,9 @@ function App() {
             path="/"
             element={
               <Layout>
-                <ProtectedRoute>
+                 {/* <ProtectedRoute> */}
                   <Dashboard />
-                </ProtectedRoute>
+                {/* </ProtectedRoute> */}
               </Layout>
             }
           />
@@ -42,19 +42,19 @@ function App() {
             path="/about"
             element={
               <Layout>
-                <ProtectedRoute>
+                 {/* <ProtectedRoute> */}
                   <About />
-                </ProtectedRoute>
+                {/* </ProtectedRoute> */}
               </Layout>
             }
           />
           <Route
             path="/settings"
-            element={
+            element={ 
               <Layout>
-                <ProtectedRoute>
+                 {/* <ProtectedRoute> */}
                   <Settings />
-                </ProtectedRoute>
+                {/* </ProtectedRoute> */}
               </Layout>
             }
           />
@@ -62,9 +62,9 @@ function App() {
             path="/help"
             element={
               <Layout>
-                <ProtectedRoute>
+                 {/* <ProtectedRoute> */}
                   <HelpCenter />
-                </ProtectedRoute>
+                {/* </ProtectedRoute> */}
               </Layout>
             }
           />
@@ -72,9 +72,9 @@ function App() {
             path="/starthelp"
             element={
               <Layout>
-                <ProtectedRoute>
+                 {/* <ProtectedRoute> */}
                   <HelpCenterStart />
-                </ProtectedRoute>
+                {/* </ProtectedRoute> */}
               </Layout>
             }
           />
@@ -82,9 +82,9 @@ function App() {
             path="/ads"
             element={
               <Layout>
-                <ProtectedRoute>
+                 {/* <ProtectedRoute> */}
                   <AdvertisingCenter />
-                </ProtectedRoute>
+                {/* </ProtectedRoute> */}
               </Layout>
             }
           />
@@ -92,9 +92,9 @@ function App() {
             path="/content"
             element={
               <Layout>
-                <ProtectedRoute>
+                 {/* <ProtectedRoute> */}
                   <Content />
-                </ProtectedRoute>
+                {/* </ProtectedRoute> */}
               </Layout>
             }
           />
@@ -102,9 +102,9 @@ function App() {
             path="/users"
             element={
               <Layout>
-                <ProtectedRoute>
+                 {/* <ProtectedRoute> */}
                   <Users />
-                </ProtectedRoute>
+                {/* </ProtectedRoute> */}
               </Layout>
             }
           />
@@ -112,9 +112,9 @@ function App() {
             path="/users/gold"
             element={
               <Layout>
-                <ProtectedRoute>
+                 {/* <ProtectedRoute> */}
                   <GoldUsers />
-                </ProtectedRoute>
+                {/* </ProtectedRoute> */}
               </Layout>
             }
           />
