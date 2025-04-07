@@ -4,7 +4,6 @@ import About from "./pages/About";
 import Login from "./pages/Login";
 import Settings from "./pages/Settings";
 import AdvertisingCenter from "./pages/AdvertisingCenter";
-import Content from "./pages/Content";
 import Users from "./pages/Users";
 import GoldUsers from "./pages/GoldUsers";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -14,6 +13,10 @@ import "./App.css";
 import HelpCenter from "./pages/HelpCenter";
 import HelpCenterStart from "./pages/HelpCenterStart";
 import GuestRoute from "./components/GuestRoute";
+import ListUsers from "./pages/ListUsers";
+import Rental from "./pages/Rental";
+import RevenueManagement from "./pages/RevenueManagement";
+import MembershipPackageScreen from "./pages/Pack";
 
 function App() {
   return (
@@ -32,9 +35,9 @@ function App() {
             path="/"
             element={
               <Layout>
-                 {/* <ProtectedRoute> */}
+                <ProtectedRoute>
                   <Dashboard />
-                {/* </ProtectedRoute> */}
+                </ProtectedRoute>
               </Layout>
             }
           />
@@ -42,9 +45,9 @@ function App() {
             path="/about"
             element={
               <Layout>
-                 {/* <ProtectedRoute> */}
+                <ProtectedRoute>
                   <About />
-                {/* </ProtectedRoute> */}
+                </ProtectedRoute>
               </Layout>
             }
           />
@@ -52,9 +55,9 @@ function App() {
             path="/settings"
             element={ 
               <Layout>
-                 {/* <ProtectedRoute> */}
+                <ProtectedRoute>
                   <Settings />
-                {/* </ProtectedRoute> */}
+                </ProtectedRoute>
               </Layout>
             }
           />
@@ -62,9 +65,9 @@ function App() {
             path="/help"
             element={
               <Layout>
-                 {/* <ProtectedRoute> */}
+                <ProtectedRoute>
                   <HelpCenter />
-                {/* </ProtectedRoute> */}
+                </ProtectedRoute>
               </Layout>
             }
           />
@@ -72,9 +75,9 @@ function App() {
             path="/starthelp"
             element={
               <Layout>
-                 {/* <ProtectedRoute> */}
+                <ProtectedRoute>
                   <HelpCenterStart />
-                {/* </ProtectedRoute> */}
+                </ProtectedRoute>
               </Layout>
             }
           />
@@ -82,19 +85,39 @@ function App() {
             path="/ads"
             element={
               <Layout>
-                 {/* <ProtectedRoute> */}
+                <ProtectedRoute>
                   <AdvertisingCenter />
-                {/* </ProtectedRoute> */}
+                </ProtectedRoute>
               </Layout>
             }
           />
           <Route
-            path="/content"
+            path="/rental"
             element={
               <Layout>
-                 {/* <ProtectedRoute> */}
-                  <Content />
-                {/* </ProtectedRoute> */}
+                <ProtectedRoute>
+                  <Rental />
+                </ProtectedRoute>
+              </Layout>
+            }
+          />
+           <Route
+            path="/revenue"
+            element={
+              <Layout>
+                <ProtectedRoute>
+                  <RevenueManagement />
+                </ProtectedRoute>
+              </Layout>
+            }
+          />
+          <Route
+            path="/pack"
+            element={
+              <Layout>
+                <ProtectedRoute>
+                  <MembershipPackageScreen />
+                </ProtectedRoute>
               </Layout>
             }
           />
@@ -102,9 +125,19 @@ function App() {
             path="/users"
             element={
               <Layout>
-                 {/* <ProtectedRoute> */}
+                <ProtectedRoute>
                   <Users />
-                {/* </ProtectedRoute> */}
+                </ProtectedRoute>
+              </Layout>
+            }
+          />
+          <Route
+            path="/users/list"
+            element={
+              <Layout>
+                <ProtectedRoute>
+                  <ListUsers />
+                </ProtectedRoute>
               </Layout>
             }
           />
@@ -112,9 +145,9 @@ function App() {
             path="/users/gold"
             element={
               <Layout>
-                 {/* <ProtectedRoute> */}
+                <ProtectedRoute>
                   <GoldUsers />
-                {/* </ProtectedRoute> */}
+                </ProtectedRoute>
               </Layout>
             }
           />

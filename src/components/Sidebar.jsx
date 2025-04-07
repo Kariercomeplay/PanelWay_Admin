@@ -1,19 +1,30 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { RiDashboardLine, RiFileTextLine, RiUserLine, RiAdvertisementLine, RiSettings4Line, RiLogoutBoxLine, RiArrowLeftLine, RiArrowRightLine } from 'react-icons/ri';
+import {
+  RiDashboardLine, RiFileTextLine, RiUserLine, RiAdvertisementLine,
+  RiSettings4Line, RiLogoutBoxLine, RiArrowLeftLine, RiArrowRightLine
+} from 'react-icons/ri';
+import { LuPackage2 } from "react-icons/lu";
 import { BsQuestionOctagon } from "react-icons/bs";
-
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
 function Sidebar() {
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const navigate = useNavigate();
-  
-  const menuItems = [
+
+  const mainMenuItems = [
     { icon: RiDashboardLine, text: 'Tổng quan', path: '/' },
-    { icon: RiFileTextLine, text: 'Nội dung', path: '/content' },
+    { icon: RiFileTextLine, text: 'Bài đăng quảng cáo', path: '/rental' },
     { icon: RiUserLine, text: 'Quản lí Người dùng', path: '/users' },
+    { icon: RiMoneyDollarCircleFill, text: 'Quản lí Doanh Thu', path: '/revenue' },
+    { icon: LuPackage2, text: ' Gói Thành viên', path: '/pack' },
+    
+  ];
+
+  const comingSoonItems = [
     { icon: RiAdvertisementLine, text: 'Trung tâm Quảng cáo', path: '/ads' },
     { icon: BsQuestionOctagon, text: 'Trung tâm Trợ giúp', path: '/help' },
+    // Bạn có thể thêm các tính năng sắp ra mắt khác tại đây
   ];
 
   const handleLogout = () => {
@@ -23,61 +34,83 @@ function Sidebar() {
   };
 
   return (
-    <div 
-      className={`${
-        isCollapsed ? 'w-16' : 'w-64'
-      } h-screen bg-white border-r border-gray-200 flex flex-col transition-all duration-300 relative`}
-    >
+    <div className={`transition-all duration-300 relative h-screen bg-white border-r border-gray-200 flex flex-col ${isCollapsed ? 'w-16' : 'w-64'}`}>
+      {/* Toggle button */}
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
         className="absolute -right-3 top-12 bg-white border border-gray-200 rounded-full p-1 text-gray-500 hover:text-gray-700"
       >
-        {isCollapsed ? (
-          <RiArrowRightLine className="w-4 h-4" />
-        ) : (
-          <RiArrowLeftLine className="w-4 h-4" />
-        )}
+        {isCollapsed ? <RiArrowRightLine className="w-4 h-4" /> : <RiArrowLeftLine className="w-4 h-4" />}
       </button>
 
+      {/* Logo */}
       <div className="p-4 border-b border-gray-200">
         <div className="flex items-center">
-          <img src="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/476330707_122104752284750484_5215047765037178064_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGcMEnwVDGNYm6BMBSkqdiHc26spGUkh89zbqykZSSHz0vnM8QtB7XTzJe98t0fMX3FMxnmXouQ4lG1D7Y67UAm&_nc_ohc=KJmesXmESXMQ7kNvgF3vHtn&_nc_oc=AdgXn4CnGa15fpCoWR55QcmgSNRhXWDDpm6eNGnOOP8rIFjeMdrMmWBMwT2LPcjPVdE&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=A8g48XRSR3rS-ycViEn3qXZ&oh=00_AYCe0Y_bKPnXE3WT6KEmfhnz695niRsHt_YnLJFGBvBrSQ&oe=67BBDBE8" alt="PaneWay" className="h-8" />
-          {!isCollapsed && <span className="ml-2 font-semibold text-xl">PaneWay</span>}
+          
+          {!isCollapsed && <span className="ml-2 font-semibold text-xl">PanelWay</span>}
         </div>
       </div>
 
-      <nav className="flex-1 p-4">
-        <ul className="space-y-2">
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              <Link
-                to={item.path}
-                className={`flex items-center p-2 rounded-lg ${
-                  location.pathname === item.path || 
-                  (item.path === '/users' && location.pathname.startsWith('/users'))
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
-                title={isCollapsed ? item.text : ''}
-              >
-                <item.icon className="w-6 h-6" />
-                {!isCollapsed && <span className="ml-3">{item.text}</span>}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      {/* Main menu */}
+      <nav className="flex-1 p-4 space-y-6 overflow-auto">
+        {/* Current Features */}
+        <div>
+          {!isCollapsed && <h3 className="text-xs font-semibold text-gray-400 uppercase mb-2">Tính năng hiện tại</h3>}
+          <ul className="space-y-2">
+            {mainMenuItems.map((item, index) => (
+              <li key={index}>
+                <Link
+                  to={item.path}
+                  className={`flex items-center p-2 rounded-lg ${location.pathname === item.path ||
+                      (item.path === '/users' && location.pathname.startsWith('/users'))
+                      ? 'bg-blue-50 text-blue-600'
+                      : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                  title={isCollapsed ? item.text : ''}
+                >
+                  <item.icon className="w-6 h-6" />
+                  {!isCollapsed && <span className="ml-3">{item.text}</span>}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Coming Soon */}
+        <div>
+          {!isCollapsed && (
+            <h3 className="text-xs font-semibold text-gray-400 uppercase mb-2">Sắp ra mắt</h3>
+          )}
+          <ul className="space-y-2">
+            {comingSoonItems.map((item, index) => (
+              <li key={index}>
+                <Link
+                  to={item.path}
+                  className={`flex items-center p-2 rounded-lg ${location.pathname === item.path
+                      ? 'bg-blue-50 text-blue-600'
+                      : 'text-gray-500 hover:bg-gray-100'
+                    }`}
+                  title={isCollapsed ? item.text : ''}
+                >
+                  <item.icon className="w-6 h-6" />
+                  {!isCollapsed && <span className="ml-3">{item.text}</span>}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </nav>
 
+      {/* Settings & Logout */}
       <div className="p-4 border-t border-gray-200">
         <ul className="space-y-2">
           <li>
             <Link
               to="/settings"
-              className={`flex items-center p-2 rounded-lg ${
-                location.pathname === '/settings'
+              className={`flex items-center p-2 rounded-lg ${location.pathname === '/settings'
                   ? 'bg-blue-50 text-blue-600'
                   : 'text-gray-700 hover:bg-gray-100'
-              }`}
+                }`}
               title={isCollapsed ? 'Cài đặt' : ''}
             >
               <RiSettings4Line className="w-6 h-6" />
@@ -85,7 +118,7 @@ function Sidebar() {
             </Link>
           </li>
           <li>
-            <button 
+            <button
               className="flex items-center p-2 text-gray-700 hover:bg-gray-100 rounded-lg w-full"
               title={isCollapsed ? 'Đăng xuất' : ''}
               onClick={handleLogout}

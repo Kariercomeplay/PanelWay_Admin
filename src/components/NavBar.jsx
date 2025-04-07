@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RiSearchLine, RiNotification3Line, RiMailLine, RiUserLine, RiLockPasswordLine, RiLoginCircleLine, RiLogoutBoxLine } from 'react-icons/ri';
-
+import { handleLogoutAPI } from '@/apis/authAPI';
 function Navbar() {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showMessages, setShowMessages] = useState(false);
@@ -14,7 +14,7 @@ function Navbar() {
   ];
 
   const messages = [
-    { id: 1, title: 'Nodmas Team', subtitle: 'Cập nhật Tổng quan', count: 12 },
+    { id: 1, title: 'Panelway Team', subtitle: 'Cập nhật Tổng quan', count: 12 },
     { id: 2, title: 'Sự kiện', subtitle: 'Sự kiện mới đang diễn ra', count: 6 },
     { id: 3, title: 'Tin nhắn từ người lạ', subtitle: 'Có thể bạn biết', count: 3 },
   ];
@@ -23,8 +23,9 @@ function Navbar() {
     { id: 1, title: 'Quản lí Tài khoản', icon: RiUserLine },
     { id: 2, title: 'Đổi mật khẩu', icon: RiLockPasswordLine },
     { id: 3, title: 'Hoạt động đăng nhập', icon: RiLoginCircleLine },
-    { id: 4, title: 'Đăng xuất', icon: RiLogoutBoxLine },
   ];
+
+
 
   return (
     <div className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4">
@@ -134,12 +135,12 @@ function Navbar() {
             }}
           >
             <img
-              src="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/476330707_122104752284750484_5215047765037178064_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGcMEnwVDGNYm6BMBSkqdiHc26spGUkh89zbqykZSSHz0vnM8QtB7XTzJe98t0fMX3FMxnmXouQ4lG1D7Y67UAm&_nc_ohc=KJmesXmESXMQ7kNvgF3vHtn&_nc_oc=AdgXn4CnGa15fpCoWR55QcmgSNRhXWDDpm6eNGnOOP8rIFjeMdrMmWBMwT2LPcjPVdE&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=A8g48XRSR3rS-ycViEn3qXZ&oh=00_AYCe0Y_bKPnXE3WT6KEmfhnz695niRsHt_YnLJFGBvBrSQ&oe=67BBDBE8"
+              src="/assets/panelway"
               alt="Profile"
               className="w-8 h-8 rounded-full"
             />
             <div className="flex flex-col">
-              <span className="font-medium">PaneWay</span>
+              <span className="font-medium">PanelWay</span>
               <span className="text-sm text-gray-500">Admin</span>
             </div>
           </button>
